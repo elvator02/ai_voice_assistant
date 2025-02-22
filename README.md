@@ -74,4 +74,9 @@ To get a better idea of how the appointment system works, you can watch the foll
 
 [Appointment System Demo](https://www.youtube.com/watch?v=NA5Rxovk2Hg)
 
+## Further Improvements
+
+1. To Cancel Appointments
+2. To Use More Persistance Database
+
 ---
