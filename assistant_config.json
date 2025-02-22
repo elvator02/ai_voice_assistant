@@ -1,0 +1,134 @@
+{
+  "assistant": {
+    "name": "testing",
+    "transcriber": {
+      "provider": "deepgram",
+      "model": "nova-2-meeting",
+      "language": "en"
+    },
+    "model": {
+      "model": "gpt-4o-mini",
+      "temperature": 0.7,
+      "messages": [
+        {
+          "content": "You are a voice assistant for Mr Kushagra, he is a nutritionist. He works in Golds Gym in Dehradun, India. He works from 8 AM to 5PM daily, except Saturdays and Sundays. He goes to gym from 3 PM to 5 PM to take his personal clients and he takes his lunch from 1 PM to 2 PM.\n\n\nYou are tasked with answering questions about the business, and booking appointments. If they wish to book an appointment, your goal is to gather necessary information from callers in a friendly and efficient manner like follows:\n\n\n- The Current Year is 2025 so all dates belong to this year only\n- The Appointment meeting length will be of 30 minutes.\n- Always check the Mr Kushagra's Schecdule before finalizing the time.\n- Be sure to be kind of funny and witty!\n- Keep all your responses short and simple. Use casual language, phrases like \"Umm...\", \"Well...\", and \"I mean\" are preferred.\n- This is a voice conversation, so keep your responses short, like in a real conversation. Don't ramble for too long.",
+          "role": "system"
+        }
+      ],
+      "toolIds": [
+        "xxxxx-xxxxx-xxxxx-xxxxx-xxxxx",
+        "xxxxx-xxxxx-xxxxx-xxxxx-xxxxx"
+      ],
+      "provider": "openai",
+      "tools": [
+        {
+          "id": "xxxxx-xxxxx-xxxxx-xxxxx-xxxxx",
+          "createdAt": "2025-02-21T18:27:44.027Z",
+          "updatedAt": "2025-02-22T14:22:44.606Z",
+          "type": "function",
+          "function": {
+            "name": "makeAppointment",
+            "async": false,
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "description": "Get the date of the appointment, send to api in ISO format, Confirm the Date and time"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "name of the person , Confirm the name by spell check"
+                },
+                "email": {
+                  "type": "string",
+                  "description": "email of the person, Confirm the email by spell check"
+                },
+                "intent": {
+                  "type": "string",
+                  "description": "Get the purpose of the appointment"
+                }
+              }
+            },
+            "description": "To make appointment with clients. Always Confirm the Email by spelling it. This ensures accuracy and avoids any miscommunication or errors in email correspondence."
+          },
+          "messages": [
+            {
+              "role": "assistant",
+              "type": "request-complete",
+              "content": "Hola your Appointment is booked"
+            }
+          ],
+          "orgId": "xxxxx-xxxxx-xxxxx-xxxxx-xxxxx",
+          "server": {
+            "url": "https://xxxxx-xxxxx-xxxxx-xxxxx-xxxxx.sisko.replit.dev/makeappoint",
+            "timeoutSeconds": 30
+          },
+          "async": false
+        },
+        {
+          "id": "xxxxx-xxxxx-xxxxx-xxxxx-xxxxx",
+          "createdAt": "2025-02-22T12:44:18.658Z",
+          "updatedAt": "2025-02-22T13:57:46.465Z",
+          "type": "function",
+          "function": {
+            "name": "checkAppointmentTime",
+            "async": false,
+            "parameters": {
+              "type": "object",
+              "required": [
+                "from"
+              ],
+              "properties": {
+                "to": {
+                  "type": "string",
+                  "description": "Its the Appointment meeting ending time its in ISO format and to get this time add 30 minutes to starting of Appointment time"
+                },
+                "from": {
+                  "type": "string",
+                  "description": "Its the Appointment starting time and its in ISO format"
+                }
+              }
+            },
+            "description": "Whenever a user mentions an appointment time and date, always check availability before confirming. If the requested time is unavailable, suggest the closest available slots."
+          },
+          "orgId": "xxxxx-xxxxx-xxxxx-xxxxx-xxxxx",
+          "server": {
+            "url": "https://xxxxx-xxxxx-xxxxx-xxxxx-xxxxx.sisko.replit.dev/checkappointmenttime",
+            "timeoutSeconds": 30
+          },
+          "async": false
+        }
+      ]
+    },
+    "voice": {
+      "model": "sonic-english",
+      "voiceId": "xxxxx-xxxxx-xxxxx-xxxxx-xxxxx",
+      "provider": "cartesia",
+      "experimentalControls": {
+        "speed": "normal"
+      }
+    },
+    "firstMessage": "Hello I am Khushi, Mr Kushagra's AI assistant, How can I help you?",
+    "endCallMessage": "Goodbye, have nice day ahead!",
+    "hipaaEnabled": false,
+    "clientMessages": [
+      "transcript",
+      "hang",
+      "function-call",
+      "speech-update",
+      "metadata",
+      "transfer-update",
+      "conversation-update"
+    ],
+    "serverMessages": [
+      "end-of-call-report",
+      "status-update",
+      "hang",
+      "function-call"
+    ],
+    "serverUrl": "https://xxxxx-xxxxx-xxxxx-xxxxx-xxxxx.sisko.replit.dev/logs",
+    "backchannelingEnabled": false,
+    "backgroundDenoisingEnabled": true
+  }
+}
